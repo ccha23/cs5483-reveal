@@ -1,3 +1,4 @@
+// filepath: /home/ccha23/cs5483-reveal/gulpfile.js
 const fs = require('fs');
 const pkg = require('./package.json');
 const glob = require('glob');
@@ -33,12 +34,12 @@ Copyright (C) 2011-2024 Hakim El Hattab, https://hakim.se
 `;
 
 const jsLicense = `/*!
- * reveal.js ${pkg.version}
- * ${pkg.homepage}
- * MIT licensed
- *
- * Copyright (C) 2011-2024 Hakim El Hattab, https://hakim.se
- */\n`;
+* reveal.js ${pkg.version}
+* ${pkg.homepage}
+* MIT licensed
+*
+* Copyright (C) 2011-2024 Hakim El Hattab, https://hakim.se
+*/\n`;
 
 // Prevents warnings from opening too many test pages
 process.setMaxListeners(20);
@@ -135,29 +136,29 @@ gulp.task('plugins', () => {
         { name: 'RevealMath', input: './plugin/math/plugin.js', output: './plugin/math/math' },
     ].map(plugin => {
         return rollup({
-                cache: cache[plugin.input],
-                input: plugin.input,
-                plugins: [
-                    resolve(),
-                    commonjs(),
-                    babel({
-                        ...babelConfig,
-                        ignore: [/node_modules\/(?!(highlight\.js|marked)\/).*/],
-                    }),
-                    terser()
-                ]
+            cache: cache[plugin.input],
+            input: plugin.input,
+            plugins: [
+                resolve(),
+                commonjs(),
+                babel({
+                    ...babelConfig,
+                    ignore: [/node_modules\/(?!(highlight\.js|marked)\/).*/],
+                }),
+                terser()
+            ]
         }).then(bundle => {
-                cache[plugin.input] = bundle.cache;
-                bundle.write({
-                    file: plugin.output + '.esm.js',
-                    name: plugin.name,
-                    format: 'es'
+            cache[plugin.input] = bundle.cache;
+            bundle.write({
+                file: plugin.output + '.esm.js',
+                name: plugin.name,
+                format: 'es'
             });
 
-                bundle.write({
-                    file: plugin.output + '.js',
-                    name: plugin.name,
-                    format: 'umd'
+            bundle.write({
+                file: plugin.output + '.js',
+                name: plugin.name,
+                format: 'umd'
             });
         });
     }));
@@ -166,27 +167,27 @@ gulp.task('plugins', () => {
 // a custom pipeable step to transform Sass to CSS
 function compileSass() {
     return through.obj((vinylFile, encoding, callback) => {
-    const transformedFile = vinylFile.clone();
+        const transformedFile = vinylFile.clone();
 
-    sass.render({
-        silenceDeprecations: ['legacy-js-api'],
-        data: transformedFile.contents.toString(),
-        file: transformedFile.path,
+        sass.render({
+            silenceDeprecations: ['legacy-js-api'],
+            data: transformedFile.contents.toString(),
+            file: transformedFile.path,
         }, (err, result) => {
             if (err) {
-            callback(err);
-        }
-        else {
-            transformedFile.extname = '.css';
-            transformedFile.contents = result.css;
-            callback(null, transformedFile);
-        }
+                callback(err);
+            }
+            else {
+                transformedFile.extname = '.css';
+                transformedFile.contents = result.css;
+                callback(null, transformedFile);
+            }
+        });
     });
-  });
 }
 
 gulp.task('css-themes', () => gulp.src(['./css/theme/source/*.{sass,scss}'])
-        .pipe(compileSass())
+    .pipe(compileSass())
     .pipe(gulp.dest('./dist/theme')));
 
 gulp.task('css-core', () => gulp.src(['css/reveal.scss'])
@@ -249,11 +250,11 @@ gulp.task('qunit', () => {
         tests.then(() => {
             if (failingTests > 0) {
                 reject(new Error(`${failingTests}/${totalTests} tests failed`.red));
-                }
-                else {
-                    console.log(`${'✔'} Passed ${totalTests} tests`.green.bold);
-                    resolve();
-                }
+            }
+            else {
+                console.log(`${'✔'} Passed ${totalTests} tests`.green.bold);
+                resolve();
+            }
         })
             .catch(() => {
                 reject();
@@ -266,7 +267,7 @@ gulp.task('qunit', () => {
 });
 
 gulp.task('eslint', () => gulp.src(['./js/**', 'gulpfile.js'])
-        .pipe(eslint())
+    .pipe(eslint())
     .pipe(eslint.format()));
 
 gulp.task('test', gulp.series('eslint', 'qunit'));

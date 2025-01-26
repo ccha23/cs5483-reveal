@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="30px" height="30px"
+    viewBox="100 -770 1300 1300" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true"
+    style="">
+    <defs>
+        <path id="MJX-26-TEX-B-28"
+            d="M103 166T103 251T121 412T165 541T225 639T287 708T341 750H356H361Q382 750 382 736Q382 732 365 714T323 661T274 576T232 439T214 250Q214 -62 381 -229Q382 -231 382 -234Q382 -249 360 -249H356H341Q314 -231 287 -207T226 -138T165 -41T121 89Z"></path>
+        <path id="MJX-26-TEX-BI-1D740"
+            d="M95 -13Q70 -13 55 4T40 41Q40 65 61 88Q65 92 210 207T357 322L235 602Q217 640 185 643Q182 643 178 644T173 645Q161 651 161 666Q161 677 167 684T181 692Q189 694 212 694Q335 694 358 660Q362 653 500 340T647 18Q652 10 652 6Q652 -8 622 -8H589H538L526 -5Q506 1 500 8Q494 16 444 128Q442 133 440 138L387 259L265 134Q156 20 137 4T95 -13Z"></path>
+        <path id="MJX-26-TEX-B-29"
+            d="M231 251Q231 354 214 439T173 575T123 661T81 714T64 735Q64 744 73 749H75Q77 749 79 749T84 750T90 750H105Q132 732 159 708T220 639T281 542T325 413T343 251T325 89T281 -40T221 -138T159 -207T105 -249H90Q80 -249 76 -249T68 -245T64 -234Q64 -230 81 -212T123 -160T172 -75T214 61T231 251Z"></path>
+        <path id="MJX-26-TEX-B-2E"
+            d="M74 85Q74 121 99 146T156 171Q200 171 222 143T245 85Q245 56 224 29T160 1Q118 1 96 27T74 85Z"></path>
+        <path id="MJX-26-TEX-B-21C2"
+            d="M190 682Q195 694 208 694T226 683Q228 679 228 296V-87L237 -78Q265 -52 299 -34T351 -11T374 -5Q375 -5 375 -28V-51Q340 -60 293 -92T215 -182L208 -194H188V242Q188 678 190 682Z">
+        </path>
+    </defs>
+    <g stroke="#000000" fill="#000000" stroke-width="0" transform="scale(1,-1)">
+        <!-- <rect transform="translate(100,-350)" width="1300" height="1100" fill="black" rx="200" ry="200" /> -->
+        <g data-mml-node="math">
+            <g data-mml-node="mo" transform="translate(0 -0.5)">
+                <use data-c="28" xlink:href="#MJX-26-TEX-B-28" fill="#f37726"></use>
+            </g>
+            <g data-mml-node="mi" transform="translate(300,-90)">
+                <use data-c="1D740" xlink:href="#MJX-26-TEX-BI-1D740" fill="#4e4e4e"></use>
+            </g>
+            <g data-mml-node="mo" transform="translate(850,0) translate(0 -0.5)">
+                <use data-c="29" xlink:href="#MJX-26-TEX-B-29" fill="#f37726"></use>
+            </g>
+            <g data-mml-node="mo" transform="translate(1030,-360)">
+                <g data-mml-node="mstyle" transform="scale(1.5)">
+                    <use data-c="2E" xlink:href="#MJX-26-TEX-B-2E" fill="red">
+                        <animate attributeName="opacity" values="1;0" dur="1s" repeatCount="indefinite" />
+                    </use>
+                </g>
+            </g>
+            <!-- <g data-mml-node="mpadded" transform="translate(1000,50)">
+                <g transform="translate(-200,-100)">
+                    <g data-mml-node="mstyle" transform="scale(2, 1.2)">
+                        <g data-mml-node="mo">
+                            <use data-c="21C2" xlink:href="#MJX-26-TEX-B-21C2" fill="RoyalBlue">
+                                <animate attributeName="opacity" values="1;0" dur="1s" repeatCount="indefinite" />
+                            </use>
+                        </g>
+                    </g>
+                </g>
+            </g> -->
+        </g>
+    </g>
+</svg>
