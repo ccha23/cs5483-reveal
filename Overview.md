@@ -7,6 +7,8 @@
 ## Guess the value of $y$
 
 - First two columns have two 1’s, so $y=\blank{1}$.
+- Database Management Systems: 
+    - <span class="blank" data-blank-hint="Yes/No">MySQL</span>, PostgreSQL, EnterpriseDB, MongoDB, MariaDB, Microsoft SQL Server, Oracle, Sybase, SAP HANA, MemSQL, SQLite, IBM DB2,...
 
 --
 
@@ -27,5 +29,5 @@
 - Database: 
     - relational, object-oriented, spatial, text, multimedia,…
 - Database Management Systems: 
-    - MySQL, PostgreSQL, EnterpriseDB, MongoDB, MariaDB, Microsoft SQL Server, Oracle, Sybase, SAP HANA, MemSQL, SQLite, IBM DB2,…
+    - MySQL, PostgreSQL, EnterpriseDB, MongoDB, MariaDB, Microsoft SQL Server, Oracle, Sybase, SAP HANA, MemSQL, SQLite, IBM DB2,...
 

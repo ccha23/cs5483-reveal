@@ -200,51 +200,6 @@
 					Tldreveal.Tldreveal()
 				]
 			});
-
-			/**
-			* Adjusts the width of elements with the class 'blank' to ensure they maintain their width
-			* after replacing their content with a non-breaking space.
-			*/
-			function adjustBlanks() {
-				const blanks = document.querySelectorAll('.blank');
-				blanks.forEach(blank => {
-					const width = blank.offsetWidth;
-					const height = blank.offsetHeight;
-					blank.innerHTML = blank.getAttribute('hint') ||
-									(/[a-zA-Z]/.test(blank.innerHTML.charAt(0)) ? 
-									blank.innerHTML.charAt(0) : 
-									'&nbsp;');
-					blank.style.width = width + 'px';
-					blank.style.height = height + 'px';
-				});
-			}
-
-			/**
-			* Waits for all sections with the 'data-markdown' attribute to have their 'data-markdown' attribute set.
-			* If any section has an empty 'data-markdown' attribute, it retries after 100ms.
-			* Once all sections have their 'data-markdown' attributes set, it calls the adjustBlanks function.
-			*/
-			function waitForMarkdown() {
-				const sections = document.querySelectorAll('section[data-markdown]');
-				let allLoaded = true;
-		
-				sections.forEach(section => {
-					if (section.getAttribute('data-markdown') !== '') {
-						allLoaded = false;
-					}
-				});
-		
-				if (allLoaded) {
-					adjustBlanks();
-				} else {
-					setTimeout(waitForMarkdown, 100); // Check again after 100ms
-				}
-			}
-
-			// Wait for the DOM to be fully loaded before starting the waitForMarkdown function
-			document.addEventListener("DOMContentLoaded", function() {
-				waitForMarkdown();
-			});
 		</script>
 	</body>
 </html>
