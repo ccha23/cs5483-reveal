@@ -16,16 +16,82 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+				<section data-markdown>
+					<textarea data-template>
+						<img src="https://upload.wikimedia.org/wikipedia/en/4/4a/CityU_logo.svg" alt="CityU" style="width:30%;"/>
+
+						# CS5483 Lectures
+						## on Data Warehousing<br> & Data Mining
+
+						<p style="font-size: 0.8em; color: grey;">© 2025 Chung Chan</p>
+					</textarea>
+				</section>
+				<!-- to be replaced by the topic source -->
+				<section data-markdown="{}"></section>
 			</div>
 		</div>
+
+		<script>
+			// initialize markdown slides
+			document.querySelectorAll('section[data-markdown]').forEach(function(section) {
+                section.setAttribute('data-separator', '^( ?| )---( ?| )$');
+                section.setAttribute('data-separator-vertical', '^( ?| )--( ?| )$');
+                section.setAttribute('data-separator-notes', 'note:');
+                section.setAttribute('data-charset', 'UTF-8');
+            });
+
+			// list of topics
+			var topics = [
+				{ title: 'Overview', src: 'Overview.md'},
+				{ title: 'Evaluation', src: 'Evaluation.md'},
+				{ title: 'Decision_Tree', src: 'Decision_Tree.md'},
+				{ title: 'Segment_Challenge', src: 'Segment_Challenge.md'},
+				{ title: 'Nearest_Neighbor', src: 'Nearest_Neighbor.md'},
+				{ title: 'Rule', src: 'Rule.md'},
+				{ title: 'Metrics', src: 'Metrics.md'},
+				{ title: 'Ensemble', src: 'Ensemble.md'}
+			];
+
+			// load the topic
+			var topicId = getTopicId();
+			document.title = "CS5483 " + getTopic();
+			document.querySelector('section[data-markdown="{}"]').setAttribute('data-markdown', topics[topicId].src);
+			
+			function getTopic() {
+				return topics[topicId].topic;
+			}
+
+			function getTopicId() {
+				// get topic id
+				var urlparts= window.location.href.split('?');
+				if (urlparts.length>=2) {
+					var prefix= encodeURIComponent("topic")+'=';
+					var parts= urlparts[1].split(/[&;]/g);
+					for (var i= parts.length; i-- > 0;) {
+						if (parts[i].lastIndexOf(prefix, 0) !== -1) {
+							var j = parts[i].lastIndexOf(prefix, 0);
+							var identifier = parts[i].substr(prefix.length,parts[i].length-prefix.length);
+		
+							var id = topics.findIndex(element => element.title == identifier);
+							if ( id < 0 ) {
+								id = Number(identifier);
+							}
+							return Math.min(id,topics.length-1);
+						}
+					}
+				}
+				return 0;
+			}
+		</script>
 
 		<script src="dist/reveal.js"></script>
 		<script src="plugin/notes/notes.js"></script>
 		<script src="plugin/markdown/markdown.js"></script>
 		<script src="plugin/highlight/highlight.js"></script>
 		<script src="plugin/math/math.js"></script>
+
+		<!-- Load blank plugin -->
+		<script src="plugin/blank/plugin.js"></script>
 
 		<!-- Load svg content plugin -->
 		<script src="plugin/loadsvgcontent/plugin.js"></script>
@@ -95,28 +161,32 @@
 					storage: document.title,
 					theme: 'whiteboard'
 				},
-				katex: {
-					version: 'latest',
-					delimiters: [
-					{ left: '$$', right: '$$', display: true },
-					{ left: '$', right: '$', display: false },
-					{ left: '\\(', right: '\\)', display: false },
-					{ left: '\\[', right: '\\]', display: true },
-					],
-					ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-					macros: {
-						'\\abs': '\\left\\lvert #1 \\right\\rvert',
-						'\\norm': '\\left\\lvert #1 \\right\\rvert',
-						'\\Set': '\\left\\{ #1 \\right\\}',
-						'\\mc': '\\mathcal{#1}',
-						'\\M': '\\boldsymbol{#1}',
-						'\\R': '\\mathsf{#1}',
-						'\\RM': '\\boldsymbol{\\mathsf{#1}}',
-						'\\op': '\\operatorname{#1}',
-						'\\E': '\\op{E}',
-						'\\d': '\\mathrm{\\mathstrut d}',
-						'\\blank': '\\underline{\\kern.5em\\hphantom{#1}\\kern.5em}',
-					}
+				mathjax3: {
+					mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js',
+					tex: {
+					  inlineMath: [
+						['$', '$'],
+						['\\(', '\\)'],
+					  ],
+					  macros: {
+						RR: "{\\bf R}",
+						bold: ["{\\bf #1}", 1],
+						abs: ["\\left\\lvert #1 \\right\\rvert", 1],
+						norm: ["\\left\\lvert #1 \\right\\rvert", 1],
+						Set: ["\\left\\{ #1 \\right\\}", 1],
+						mc: ["\\mathcal{#1}", 1],
+						M: ["\\boldsymbol{#1}", 1],
+						R: ["\\mathsf{#1}", 1],
+						RM: ["\\boldsymbol{\\mathsf{#1}}", 1],
+						op: ["\\operatorname{#1}", 1],
+						E: "\\op{E}",
+						d: "\\mathrm{\\mathstrut d}",
+						blank: ["\\class{blank}{#1}", 1],
+					  }
+					},
+					options: {
+					  skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+					},
 				},
 
 				// Learn about plugins: https://revealjs.com/plugins/
@@ -124,27 +194,54 @@
 					RevealMarkdown, RevealHighlight, RevealNotes,
 					RevealLoadSVGContent, RevealLoadContent, RevealAnimate,
 					RevealChalkboard, RevealCustomControls,
-					RevealMath.KaTeX, Tldreveal.Tldreveal()
+					// RevealMath.KaTeX, 
+					RevealMath.MathJax3,
+					RevealBlank,
+					Tldreveal.Tldreveal()
 				]
 			});
 
+			/**
+			* Adjusts the width of elements with the class 'blank' to ensure they maintain their width
+			* after replacing their content with a non-breaking space.
+			*/
 			function adjustBlanks() {
 				const blanks = document.querySelectorAll('.blank');
 				blanks.forEach(blank => {
 					const width = blank.offsetWidth;
-					blank.innerHTML = blank.innerHTML.charAt(0) + '&nbsp;';
+					const height = blank.offsetHeight;
+					blank.innerHTML = blank.getAttribute('hint') ||
+									(/[a-zA-Z]/.test(blank.innerHTML.charAt(0)) ? 
+									blank.innerHTML.charAt(0) : 
+									'&nbsp;');
 					blank.style.width = width + 'px';
+					blank.style.height = height + 'px';
 				});
 			}
 
+			/**
+			* Waits for all sections with the 'data-markdown' attribute to have their 'data-markdown' attribute set.
+			* If any section has an empty 'data-markdown' attribute, it retries after 100ms.
+			* Once all sections have their 'data-markdown' attributes set, it calls the adjustBlanks function.
+			*/
 			function waitForMarkdown() {
-				if (document.getElementById('markdown-loaded')) {
+				const sections = document.querySelectorAll('section[data-markdown]');
+				let allLoaded = true;
+		
+				sections.forEach(section => {
+					if (section.getAttribute('data-markdown') !== '') {
+						allLoaded = false;
+					}
+				});
+		
+				if (allLoaded) {
 					adjustBlanks();
 				} else {
 					setTimeout(waitForMarkdown, 100); // Check again after 100ms
 				}
 			}
 
+			// Wait for the DOM to be fully loaded before starting the waitForMarkdown function
 			document.addEventListener("DOMContentLoaded", function() {
 				waitForMarkdown();
 			});
