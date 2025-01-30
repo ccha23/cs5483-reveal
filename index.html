@@ -4,11 +4,11 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>Slides for CS5483</title>
-		<link rel="icon" type="image/svg+xml" href="favicon.svg">
+		<title>reveal.js</title>
+
 		<link rel="stylesheet" href="dist/reset.css">
 		<link rel="stylesheet" href="dist/reveal.css">
-		<link rel="stylesheet" href="dive.css">
+		<link rel="stylesheet" href="dist/theme/black.css">
 
 		<!-- Theme used for syntax highlighted code -->
 		<link rel="stylesheet" href="plugin/highlight/monokai.css">
@@ -16,189 +16,32 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section data-markdown>
-					<textarea data-template>
-						<img src="https://upload.wikimedia.org/wikipedia/en/4/4a/CityU_logo.svg" alt="CityU" style="width:30%;"/>
-
-						# CS5483 Lectures
-						## on Data Warehousing<br> & Data Mining
-
-						<p style="font-size: 0.8em; color: grey;">© 2025 Chung Chan</p>
-					</textarea>
+				<section>Slide 1</section>
+				<section data-background="indigo">
+					<h2>Slide 2</h2>
+					<ul>
+						<li class="fragment">Fragment one</li>
+						<li class="fragment">Fragment two</li>
+						<li class="fragment">Fragment three</li>
+					</ul>
 				</section>
-				<!-- to be replaced by the topic source -->
-				<section data-markdown="{}"></section>
+				<section>Slide 3</section>
 			</div>
 		</div>
-
-		<script>
-			// initialize markdown slides
-			document.querySelectorAll('section[data-markdown]').forEach(function(section) {
-                section.setAttribute('data-separator', '^( ?| )---( ?| )$');
-                section.setAttribute('data-separator-vertical', '^( ?| )--( ?| )$');
-                section.setAttribute('data-separator-notes', 'note:');
-                section.setAttribute('data-charset', 'UTF-8');
-            });
-
-			// list of topics
-			var topics = [
-				{ title: 'Overview', src: 'Overview.md'},
-				{ title: 'Evaluation', src: 'Evaluation.md'},
-				{ title: 'Decision_Tree', src: 'Decision_Tree.md'},
-				{ title: 'Segment_Challenge', src: 'Segment_Challenge.md'},
-				{ title: 'Nearest_Neighbor', src: 'Nearest_Neighbor.md'},
-				{ title: 'Rule', src: 'Rule.md'},
-				{ title: 'Metrics', src: 'Metrics.md'},
-				{ title: 'Ensemble', src: 'Ensemble.md'}
-			];
-
-			// load the topic
-			var topicId = getTopicId();
-			document.title = "CS5483 " + getTopic();
-			document.querySelector('section[data-markdown="{}"]').setAttribute('data-markdown', topics[topicId].src);
-			
-			function getTopic() {
-				return topics[topicId].topic;
-			}
-
-			function getTopicId() {
-				// get topic id
-				var urlparts= window.location.href.split('?');
-				if (urlparts.length>=2) {
-					var prefix= encodeURIComponent("topic")+'=';
-					var parts= urlparts[1].split(/[&;]/g);
-					for (var i= parts.length; i-- > 0;) {
-						if (parts[i].lastIndexOf(prefix, 0) !== -1) {
-							var j = parts[i].lastIndexOf(prefix, 0);
-							var identifier = parts[i].substr(prefix.length,parts[i].length-prefix.length);
-		
-							var id = topics.findIndex(element => element.title == identifier);
-							if ( id < 0 ) {
-								id = Number(identifier);
-							}
-							return Math.min(id,topics.length-1);
-						}
-					}
-				}
-				return 0;
-			}
-		</script>
 
 		<script src="dist/reveal.js"></script>
 		<script src="plugin/notes/notes.js"></script>
 		<script src="plugin/markdown/markdown.js"></script>
 		<script src="plugin/highlight/highlight.js"></script>
-		<script src="plugin/math/math.js"></script>
-
-		<!-- Load blank plugin -->
-		<script src="plugin/blank/plugin.js"></script>
-
-		<!-- Load svg content plugin -->
-		<script src="plugin/loadsvgcontent/plugin.js"></script>
-
-		<!-- Load content plugin -->
-		<script src="reveal.js-plugins/loadcontent/plugin.js"></script>
-		<!-- Animate plugin -->
-		<script src="reveal.js-plugins/animate/plugin.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/svg.js/3.1.2/svg.min.js"></script>
-
-		<!-- Font awesome is required for the chalkboard plugin -->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-		<!-- Custom controls plugin is used to for opening and closing annotation modes. -->
-		<script src="reveal.js-plugins/customcontrols/plugin.js"></script>
-		<link rel="stylesheet" href="reveal.js-plugins/customcontrols/style.css">
-		<!-- Chalkboard plugin -->
-		<script src="reveal.js-plugins/chalkboard/plugin.js"></script>
-		<link rel="stylesheet" href="reveal.js-plugins/chalkboard/style.css">
-
-		<!-- Tldreveal plugin -->
-		<script src="https://unpkg.com/tldreveal/dist/bundle/index.js"></script>
-		<link rel="stylesheet" href="https://unpkg.com/tldreveal/dist/bundle/index.css" />
-
 		<script>
 			// More info about initialization & config:
 			// - https://revealjs.com/initialization/
 			// - https://revealjs.com/config/
 			Reveal.initialize({
 				hash: true,
-				slideNumber: true,
-
-				// The "normal" size of the presentation, aspect ratio will
-				// be preserved when the presentation is scaled to fit different
-				// resolutions. Can be specified using percentage units.
-				width: 1280,
-				height: 1050,
-
-				// Factor of the display size that should remain empty around
-				// the content
-				margin: 0.04,
-
-				// Bounds for smallest/largest possible scale to apply to content
-				minScale: 0.2,
-				maxScale: 2.0,
-
-				// tldreveal does not support scroll view
-				scrollActivationWidth: undefined,
-
-				animate: {
-					autoplay: true 
-				},
-				customcontrols: {
-					controls: [
-					{ icon: '<i class="fa fa-pen-square"></i>',
-						title: 'Toggle chalkboard (B)',
-						action: 'RevealChalkboard.toggleChalkboard();'
-					},
-					{ icon: '<i class="fa fa-pen"></i>',
-						title: 'Toggle notes canvas (C)',
-						action: 'RevealChalkboard.toggleNotesCanvas();'
-					}
-					]
-				},
-				chalkboard: {
-					// add configuration here
-					storage: document.title,
-					theme: 'whiteboard'
-				},
-				mathjax3: {
-					mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js',
-					tex: {
-					  inlineMath: [
-						['$', '$'],
-						['\\(', '\\)'],
-					  ],
-					  macros: {
-						RR: "{\\bf R}",
-						bold: ["{\\bf #1}", 1],
-						abs: ["\\left\\lvert #1 \\right\\rvert", 1],
-						norm: ["\\left\\lvert #1 \\right\\rvert", 1],
-						Set: ["\\left\\{ #1 \\right\\}", 1],
-						mc: ["\\mathcal{#1}", 1],
-						M: ["\\boldsymbol{#1}", 1],
-						R: ["\\mathsf{#1}", 1],
-						RM: ["\\boldsymbol{\\mathsf{#1}}", 1],
-						op: ["\\operatorname{#1}", 1],
-						E: "\\op{E}",
-						d: "\\mathrm{\\mathstrut d}",
-						blank: ["\\class{blank}{#1}", 1],
-					  }
-					},
-					options: {
-					  skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-					},
-				},
 
 				// Learn about plugins: https://revealjs.com/plugins/
-				plugins: [ 
-					RevealMarkdown, RevealHighlight, RevealNotes,
-					RevealLoadSVGContent, RevealLoadContent, RevealAnimate,
-					RevealChalkboard, RevealCustomControls,
-					// RevealMath.KaTeX, 
-					RevealMath.MathJax3,
-					RevealBlank,
-					Tldreveal.Tldreveal()
-				]
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
 			});
 		</script>
 	</body>

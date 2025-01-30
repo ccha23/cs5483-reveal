@@ -370,15 +370,3 @@
  
  
  .reveal .slides { text-align: left }
- 
- 
- 
- /****************************************
-   * Custom styles
-   ****************************************/
- .blank {
-     display: inline-block;
-     min-width: 1em;
-     border-bottom: 1px solid black;
-     /* color: transparent; */
- }
